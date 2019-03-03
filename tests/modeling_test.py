@@ -27,6 +27,8 @@ from pytorch_pretrained_bert import (BertConfig, BertModel, BertForMaskedLM,
                                      BertForQuestionAnswering, BertForSequenceClassification,
                                      BertForTokenClassification)
 
+from tsalib import dim_vars
+from tsanley import logshapes
 
 class BertModelTest(unittest.TestCase):
     class BertModelTester(object):
@@ -104,6 +106,11 @@ class BertModelTest(unittest.TestCase):
                 max_position_embeddings=self.max_position_embeddings,
                 type_vocab_size=self.type_vocab_size,
                 initializer_range=self.initializer_range)
+
+            B, T, D, IS, V = dim_vars(f'batch_size(b):{self.batch_size} seq_length(t):{self.seq_length} \
+                hidden_size(d):{self.hidden_size} intermediate_size(is):{self.intermediate_size}, \
+                vocab_size(v):{self.vocab_size}',
+                exists_ok=False)
 
             return config, input_ids, token_type_ids, input_mask, sequence_labels, token_labels
 
@@ -243,6 +250,8 @@ class BertModelTest(unittest.TestCase):
 
 
     def test_default(self):
+        print ('test default..')
+        logshapes.init(['*.forward'])
         self.run_tester(BertModelTest.BertModelTester(self))
 
     def test_config_to_json_string(self):
