@@ -2,6 +2,11 @@
 
 [![CircleCI](https://circleci.com/gh/huggingface/pytorch-pretrained-BERT.svg?style=svg)](https://circleci.com/gh/huggingface/pytorch-pretrained-BERT)
 
+**Update** : The repository contains tensor shape annotated versions of the various transformer based models, based on the [tsalib](https://www.github.com/ofnote/tsalib) library.
+
+* [Mar 3 2019] Added annotations for BERT model [here](pytorch_pretrained_bert/modeling_tsa.py).
+
+---
 This repository contains op-for-op PyTorch reimplementations, pre-trained models and fine-tuning examples for:
 
 - [Google's BERT model](https://github.com/google-research/bert),
